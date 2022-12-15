@@ -1,0 +1,24 @@
+{
+  "name": "TubesGrafkom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "three": "^0.147.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2072008NicholasCH/TubesGrafkom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2072008NicholasCH/TubesGrafkom/issues"
+  },
+  "homepage": "https://github.com/2072008NicholasCH/TubesGrafkom#readme"
+}
