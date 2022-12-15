@@ -30,10 +30,10 @@ spot.power = 3;
 scene.add(spot);
 
 const spot2 = new THREE.SpotLight(0xffffff, 1);
-spot2.position.y = -5;
-spot2.position.x = -3;
-spot2.position.z = 7;
-spot2.power = 3;
+spot2.position.y = 10;
+spot2.position.x = 0;
+spot2.position.z = 0;
+spot2.power = 5;
 scene.add(spot2);
 
 function draw(){
