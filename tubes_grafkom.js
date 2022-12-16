@@ -149,6 +149,14 @@ switch (mode) {
 }
 
 plane2.rotation.x = -1.571;
+
+let finished = false;
+function finish(car){
+    if (!finished) {
+        console.log(car + " Car Wins!");
+    }
+    finished = true;
+}
 //-------------------------------------------------------------
 
 
@@ -196,11 +204,11 @@ function draw2() {
     }
 
     if (redCar.position.z >= 2500){
-
+        finish("Red");
     }
 
     if (blueCar.position.z >= 2500){
-
+        finish("Blue");
     }
 
     orbitCtl.target.set(0, 0, redCar.position.z);
