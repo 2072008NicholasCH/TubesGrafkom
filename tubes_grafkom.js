@@ -17,6 +17,7 @@ const orbitCtl = new THREE.OrbitControls(camera, renderer.domElement);
 const road_albedo = new THREE.TextureLoader().load('assets/road_albedo.png');
 const road_normal = new THREE.TextureLoader().load('assets/road_normal.png');
 const gltfLoader = new THREE.GLTFLoader();
+let timeSec = 3;
 
 // Mobil Merah
 //-------------------------------------------------------------
@@ -36,7 +37,6 @@ gltfLoader.load(
 
 // Mobil Biru
 //-------------------------------------------------------------
-
 let blueCar;
 gltfLoader.load(
     "assets/Chevrolet_Camaro_SS_Blue.glb",
@@ -54,7 +54,6 @@ gltfLoader.load(
 
 //jalan
 //-------------------------------------------------------------
-
 const geometry_plane2 = new THREE.PlaneGeometry(30, 5000);
 const material_plane2 = new THREE.MeshPhongMaterial({ map: road_albedo, normalMap: road_normal });
 const plane2 = new THREE.Mesh(geometry_plane2, material_plane2);
@@ -84,23 +83,28 @@ const ambient = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambient);
 
 // Lampu mobil merah
+//-------------------------------------------------------------
 const redLight = new THREE.SpotLight(0xffffff, 1);
 redLight.position.set(0, 0, 5);
 redLight.target.position.z = 10000000000;
 redLight.target.updateMatrixWorld();
 redLight.power = 10;
 scene.add(redLight);
+//-------------------------------------------------------------
+
 
 // Lampu mobil biru
+//-------------------------------------------------------------
 const blueLight = new THREE.SpotLight(0xffffff, 1);
 blueLight.position.set(10, 0, 5);
 blueLight.target.position.z = 10000000000;
 blueLight.target.updateMatrixWorld();
 blueLight.power = 10;
 scene.add(blueLight);
-
 //-------------------------------------------------------------
 
+// Main
+//-------------------------------------------------------------
 let accelerate = false;
 let decelerate = false;
 const topSpeed = 5;
@@ -129,12 +133,21 @@ switch(mode){
 }
 
 plane2.rotation.x = -1.571;
+//-------------------------------------------------------------
 
+
+//Drawer
+//-------------------------------------------------------------
 function draw() {
+    renderer.render(scene, camera);
+    requestAnimationFrame(draw);
+}
+
+function draw2(){
     akselA = Math.random() * 0.01;
     akselB = Math.random() * randomB;
-    console.log(`A=${akselA}`);
-    console.log(`B=${akselB}`);
+    // console.log(`A=${akselA}`);
+    // console.log(`B=${akselB}`);
     renderer.render(scene, camera);
     orbitCtl.update();
 
@@ -167,13 +180,29 @@ function draw() {
     
     orbitCtl.target.set(0, 0, redCar.position.z);
     
-    requestAnimationFrame(draw);
+    requestAnimationFrame(draw2);
 }
 
-setTimeout(()=>{
-    draw();
-}, 1000);
+//-------------------------------------------------------------
+draw();
+countdown();
 
+function countdown(){
+    console.log("COUNTDOWN!");
+    const countDown = setInterval(() =>{
+        console.log(timeSec);
+        timeSec--;
+        if (timeSec <=-1 && timeSec < 1){
+            console.log("GO!!!")
+            clearInterval(countDown);
+        }
+    }, 1000);
+}
+
+setTimeout(() =>{
+    draw2();
+}, 4000);
+console.log()
 document.addEventListener("keydown", (e)=>{
     if (e.code == "KeyW"){
         accelerate = true;
