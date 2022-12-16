@@ -7,7 +7,7 @@ const road_albedo = new THREE.TextureLoader().load('assets/road_albedo.png');
 const road_normal = new THREE.TextureLoader().load('assets/road_normal.png');
 const gltfLoader = new THREE.GLTFLoader();
 
-scene.background = loader.load("assets/bg.webp");
+scene.background = loader.load("assets/circuitBG.jpg");
 
 camera.position.z = -20;
 camera.position.y = 5;
@@ -23,7 +23,6 @@ let b = 0;  // Accel - Decel biru
 let akselA = 0;
 let akselB = 0;
 let randomB = 0;
-let mode = "hard";
 
 // Mobil Merah
 //-------------------------------------------------------------
@@ -144,7 +143,7 @@ switch (mode) {
         randomB = 0.0095;
         break;
     case "insane":
-        randomB = 0.1;
+        randomB = 0.01;
         break;
 
 }
@@ -194,6 +193,14 @@ function draw2() {
     // Biar ga mundur
     if (a < 0) {
         a = 0;
+    }
+
+    if (redCar.position.z >= 2500){
+
+    }
+
+    if (blueCar.position.z >= 2500){
+
     }
 
     orbitCtl.target.set(0, 0, redCar.position.z);

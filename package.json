@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "three": "^0.147.0"
   },
   "devDependencies": {},

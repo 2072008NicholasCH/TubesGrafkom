@@ -4,13 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tugas Besar Grafika Komputer</title>
-
-    <script src="node_modules/three/build/three.js"></script>
-    <script src="node_modules/three/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="node_modules/three/examples/js/controls/OrbitControls.js"></script>
+    <title>Tugas Besar Grafkom</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.6.2.slim.min.js" integrity="sha256-E3P3OaTZH+HlEM7f1gdAT3lHAn4nWBZXuYe89DFg2d0=" crossorigin="anonymous"></script>
 </head>
-<body style="margin: 0;">
-    <script src="tubes_grafkom.js"></script>
+<body>
+    <div class="container">
+        <div class="mb-3"></div>
+        <!-- <form> -->
+            <div class="mb-3">
+                <button class="btn btn-outline-primary form-control btns" id="easy">Easy</button>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-outline-primary form-control btns" id="medium">Medium</button>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-outline-primary form-control btns" id="hard">Hard</button>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-outline-primary form-control btns" id="insane">Insane</button>
+            </div>
+
+        <!-- </form> -->
+    </div>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(".btns").click((e)=>{
+            window.location = "game.html?difficulty=" + e.target.id;
+        });
+    </script>
 </body>
 </html>
