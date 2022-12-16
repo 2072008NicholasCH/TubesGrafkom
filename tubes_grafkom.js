@@ -1,22 +1,22 @@
 const scene = new THREE.Scene();
-
 const loader = new THREE.TextureLoader();
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+const renderer = new THREE.WebGLRenderer();
+const orbitCtl = new THREE.OrbitControls(camera, renderer.domElement);
+const road_albedo = new THREE.TextureLoader().load('assets/road_albedo.png');
+const road_normal = new THREE.TextureLoader().load('assets/road_normal.png');
+const gltfLoader = new THREE.GLTFLoader();
+
 scene.background = loader.load("assets/bg.webp");
 
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
 camera.position.z = -20;
 camera.position.y = 5;
 
-const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x444444, 1);
 
 document.body.appendChild(renderer.domElement);
 
-const orbitCtl = new THREE.OrbitControls(camera, renderer.domElement);
-const road_albedo = new THREE.TextureLoader().load('assets/road_albedo.png');
-const road_normal = new THREE.TextureLoader().load('assets/road_normal.png');
-const gltfLoader = new THREE.GLTFLoader();
 let timeSec = 3;
 
 // Mobil Merah
@@ -42,7 +42,7 @@ gltfLoader.load(
     "assets/Chevrolet_Camaro_SS_Blue.glb",
     (gltf) => {
         gltf.scene.position.x = 10;
-        scene.add(gltf.scene);    
+        scene.add(gltf.scene);
         blueCar = gltf.scene;
     },
     undefined,
@@ -102,6 +102,23 @@ blueLight.target.updateMatrixWorld();
 blueLight.power = 10;
 scene.add(blueLight);
 //-------------------------------------------------------------
+//-------------------------------------------------------------
+
+
+//Countdown
+//-------------------------------------------------------------
+function countdown() {
+    console.log("COUNTDOWN!");
+    const countDown = setInterval(() => {
+        console.log(timeSec);
+        timeSec--;
+        if (timeSec <= -1 && timeSec < 1) {
+            console.log("GO!!!")
+            clearInterval(countDown);
+        }
+    }, 1000);
+}
+//-------------------------------------------------------------
 
 // Main
 //-------------------------------------------------------------
@@ -116,8 +133,8 @@ let akselB = 0;
 let randomB = 0;
 let mode = "hard";
 
-switch(mode){
-    case "easy": 
+switch (mode) {
+    case "easy":
         randomB = 0.007;
         break;
     case "medium":
@@ -129,7 +146,7 @@ switch(mode){
     case "insane":
         randomB = 0.1;
         break;
-        
+
 }
 
 plane2.rotation.x = -1.571;
@@ -143,7 +160,7 @@ function draw() {
     requestAnimationFrame(draw);
 }
 
-function draw2(){
+function draw2() {
     akselA = Math.random() * 0.01;
     akselB = Math.random() * randomB;
     // console.log(`A=${akselA}`);
@@ -154,7 +171,7 @@ function draw2(){
     blueCar.position.z += b;
     blueLight.position.z += b;
 
-    if (b <= topSpeed){
+    if (b <= topSpeed) {
         b += akselB;
     }
 
@@ -162,65 +179,59 @@ function draw2(){
     redLight.position.z += a;
     camera.position.z += a;
 
-    if (accelerate && a <= topSpeed){    
+    if (accelerate && a <= topSpeed) {
         a += akselA;
-    } else if (!accelerate && a > 0){
+    } else if (!accelerate && a > 0) {
         a -= 0.0075;
     }
 
-    if (decelerate && a > 0){
+    if (decelerate && a > 0) {
         // Rem
         a -= 0.008;
     }
 
     // Biar ga mundur
-    if (a < 0 ){
+    if (a < 0) {
         a = 0;
     }
-    
+
     orbitCtl.target.set(0, 0, redCar.position.z);
-    
+
     requestAnimationFrame(draw2);
 }
-
 //-------------------------------------------------------------
-draw();
-countdown();
 
-function countdown(){
-    console.log("COUNTDOWN!");
-    const countDown = setInterval(() =>{
-        console.log(timeSec);
-        timeSec--;
-        if (timeSec <=-1 && timeSec < 1){
-            console.log("GO!!!")
-            clearInterval(countDown);
-        }
-    }, 1000);
-}
-
-setTimeout(() =>{
-    draw2();
-}, 4000);
-console.log()
-document.addEventListener("keydown", (e)=>{
-    if (e.code == "KeyW"){
+//Listener
+//-------------------------------------------------------------
+document.addEventListener("keydown", (e) => {
+    if (e.code == "KeyW") {
         accelerate = true;
-    } else if (e.code == "KeyS"){
+    } else if (e.code == "KeyS") {
         decelerate = true;
     }
 });
 
-document.addEventListener("keyup", (e)=>{
-    if (e.code == "KeyW"){
+document.addEventListener("keyup", (e) => {
+    if (e.code == "KeyW") {
         accelerate = false;
-    } else if (e.code == "KeyS"){
+    } else if (e.code == "KeyS") {
         decelerate = false;
     }
 });
 
-window.addEventListener("resize", (e)=>{
+window.addEventListener("resize", (e) => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 });
+//-------------------------------------------------------------
+
+//Caller
+//-------------------------------------------------------------
+draw();
+countdown();
+
+setTimeout(() => {
+    draw2();
+}, 4000);
+//-------------------------------------------------------------
