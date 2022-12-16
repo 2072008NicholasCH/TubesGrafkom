@@ -18,6 +18,12 @@ renderer.setClearColor(0x444444, 1);
 document.body.appendChild(renderer.domElement);
 
 let timeSec = 3;
+let a = 0;  // Accelerasi - decelerasi merah
+let b = 0;  // Accel - Decel biru
+let akselA = 0;
+let akselB = 0;
+let randomB = 0;
+let mode = "hard";
 
 // Mobil Merah
 //-------------------------------------------------------------
@@ -125,13 +131,7 @@ function countdown() {
 let accelerate = false;
 let decelerate = false;
 const topSpeed = 5;
-let a = 0;  // Accelerasi - decelerasi merah
-let b = 0;  // Accel - Decel biru
 
-let akselA = 0;
-let akselB = 0;
-let randomB = 0;
-let mode = "hard";
 
 switch (mode) {
     case "easy":
@@ -157,6 +157,7 @@ plane2.rotation.x = -1.571;
 //-------------------------------------------------------------
 function draw() {
     renderer.render(scene, camera);
+    orbitCtl.update();
     requestAnimationFrame(draw);
 }
 
