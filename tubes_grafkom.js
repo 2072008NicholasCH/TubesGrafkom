@@ -268,11 +268,12 @@ setTimeout(() => {
     wheelRR.add(roda.children[9]);
     scene.add(wheelRR);
     wheelRR.children.forEach((wheels)=>{
-        if (wheels.name != "RimRR"){
-            wheels.position.set(0, 0, 0);
-        } else {
-            wheels.position.set(-0.4, -0.3, 0);
-        }
+        wheels.position.set(0, 0, 0)
+        // if (wheels.name != "RimRR"){
+        //     wheels.position.set(0, 0, 0);
+        // } else {
+        //     wheels.position.set(-0.4, -0.3, 0);
+        // }
     });
     draw2();
 }, 4000);
