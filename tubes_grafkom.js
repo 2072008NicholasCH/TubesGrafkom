@@ -56,6 +56,18 @@ gltfLoader.load(
     });
 //-------------------------------------------------------------
 
+let roda;
+gltfLoader.load(
+    "assets/Chevrolet_Camaro_SS_Tire.glb",
+    (gltf) => {
+        scene.add(gltf.scene);
+        roda = gltf.scene;
+    },
+    undefined,
+    (err) => {
+        console.log(err);
+    }
+);
 
 //jalan
 //-------------------------------------------------------------
@@ -248,6 +260,7 @@ draw();
 countdown();
 
 setTimeout(() => {
+    console.log(roda);
     draw2();
 }, 4000);
 //-------------------------------------------------------------
