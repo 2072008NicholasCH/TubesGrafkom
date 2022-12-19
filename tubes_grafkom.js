@@ -60,7 +60,7 @@ let roda;
 gltfLoader.load(
     "assets/Chevrolet_Camaro_SS_Tire.glb",
     (gltf) => {
-        scene.add(gltf.scene);
+        // scene.add(gltf.scene);
         roda = gltf.scene;
     },
     undefined,
@@ -180,7 +180,10 @@ function draw() {
     requestAnimationFrame(draw);
 }
 
+const wheelRR = new THREE.Group();
 function draw2() {
+    wheelRR.rotation.x += 0.01;
+
     akselA = Math.random() * 0.01;
     akselB = Math.random() * randomB;
     // console.log(`A=${akselA}`);
@@ -260,7 +263,22 @@ draw();
 countdown();
 
 setTimeout(() => {
-    console.log(roda);
+    wheelRR.add(roda.children[11]);
+    wheelRR.add(roda.children[10]);
+    wheelRR.add(roda.children[9]);
+    scene.add(wheelRR);
+    wheelRR.children.forEach((wheels)=>{
+        if (wheels.name != "RimRR"){
+            wheels.position.set(0, 0, 0);
+        } else {
+            wheels.position.set(-0.4, -0.3, 0);
+        }
+    });
     draw2();
 }, 4000);
 //-------------------------------------------------------------
+
+const spot = new THREE.SpotLight(0xffffff, 1);
+spot.position.z = 15;
+spot.power = 100;
+scene.add(spot);
