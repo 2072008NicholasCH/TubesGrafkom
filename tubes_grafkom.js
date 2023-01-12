@@ -7,7 +7,7 @@ const road_albedo = new THREE.TextureLoader().load('assets/road_albedo.png');
 const road_normal = new THREE.TextureLoader().load('assets/road_normal.png');
 const gltfLoader = new THREE.GLTFLoader();
 
-scene.background = loader.load("assets/circuitBG.jpg");
+// scene.background = loader.load("assets/circuitBG.jpg");
 
 camera.position.z = -20;
 camera.position.y = 5;
@@ -56,6 +56,8 @@ gltfLoader.load(
     });
 //-------------------------------------------------------------
 
+// Wheels
+//-------------------------------------------------------------
 let roda;
 gltfLoader.load(
     "assets/Chevrolet_Camaro_SS_Tire.glb",
@@ -68,6 +70,7 @@ gltfLoader.load(
         console.log(err);
     }
 );
+//-------------------------------------------------------------
 
 //jalan
 //-------------------------------------------------------------
@@ -96,8 +99,21 @@ scene.add(plane2);
 // spot2.power = 5;
 // scene.add(spot2);
 
+// "Matahari"
+//-------------------------------------------------------------
+const sun = new THREE.SpotLight(0xffffff, 1);
+sun.position.set(0, 500, 0);
+sun.target.position.set(0, 0, 200);
+sun.target.updateMatrixWorld();
+sun.power = 7;
+scene.add(sun);
+
+scene.add(new THREE.SpotLightHelper(sun));
+
+
 const ambient = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambient);
+//-------------------------------------------------------------
 
 // Lampu mobil merah
 //-------------------------------------------------------------
