@@ -56,22 +56,6 @@ gltfLoader.load(
     });
 //-------------------------------------------------------------
 
-// Wheels
-//-------------------------------------------------------------
-let roda;
-gltfLoader.load(
-    "assets/Chevrolet_Camaro_SS_Tire.glb",
-    (gltf) => {
-        scene.add(gltf.scene);
-        roda = gltf.scene;
-    },
-    undefined,
-    (err) => {
-        console.log(err);
-    }
-);
-//-------------------------------------------------------------
-
 //jalan
 //-------------------------------------------------------------
 const geometry_plane2 = new THREE.PlaneGeometry(30, 5000);
@@ -281,7 +265,6 @@ draw();
 countdown();
 
 setTimeout(() => {
-    console.log(roda);
     draw2();
 }, 4000);
 //-------------------------------------------------------------
