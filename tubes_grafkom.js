@@ -1,21 +1,20 @@
 const scene = new THREE.Scene();
 const loader = new THREE.TextureLoader();
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-const renderer = new THREE.WebGLRenderer();
-const orbitCtl = new THREE.OrbitControls(camera, renderer.domElement);
 const road_albedo = new THREE.TextureLoader().load('assets/road_albedo.png');
 const road_normal = new THREE.TextureLoader().load('assets/road_normal.png');
 const gltfLoader = new THREE.GLTFLoader();
 
-// scene.background = loader.load("assets/circuitBG.jpg");
-
 camera.position.z = -20;
 camera.position.y = 5;
 
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x444444, 1);
+const canvas = document.getElementById("game-canvas");
+canvas.width = window.innerWidth - 100;
 
-document.body.appendChild(renderer.domElement);
+const renderer = new THREE.WebGLRenderer({canvas: canvas});
+const orbitCtl = new THREE.OrbitControls(camera, renderer.domElement);
+renderer.setSize(window.innerWidth - 100, window.innerHeight);
+renderer.setClearColor(0x444444, 1);
 
 let timeSec = 3;
 let a = 0;  // Accelerasi - decelerasi merah
@@ -134,8 +133,14 @@ function countdown() {
     const countDown = setInterval(() => {
         console.log(timeSec);
         timeSec--;
-        if (timeSec <= -1 && timeSec < 1) {
+        if (timeSec == -1) {
+            document.getElementById("countdown-lamp").setAttribute("src", "assets/Hijau.png");
             console.log("GO!!!")
+        } else if (timeSec == 2){
+            document.getElementById("countdown-lamp").setAttribute("src", "assets/Kuning.png");
+        } else if (timeSec == -2){
+            console.log("A");
+            document.getElementById("countdown-lamp").style.display = "none";
             clearInterval(countDown);
         }
     }, 1000);
@@ -171,6 +176,7 @@ let finished = false;
 function finish(car){
     if (!finished) {
         console.log(car + " Car Wins!");
+        document.getElementById("announciator").innerHTML = car + " Car Wins!";
     }
     finished = true;
 }
