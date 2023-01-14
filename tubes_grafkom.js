@@ -136,7 +136,7 @@ function countdown() {
         timeSec--;
         if (timeSec == -1) {
             document.getElementById("countdown-lamp").setAttribute("src", "assets/Hijau.png");
-        } else if (timeSec == 2){
+        } else if (timeSec == 0){
             document.getElementById("countdown-lamp").setAttribute("src", "assets/Kuning.png");
         } else if (timeSec == -2){
             document.getElementById("countdown-lamp").style.display = "none";
