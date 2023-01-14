@@ -23,6 +23,8 @@ let akselA = 0;
 let akselB = 0;
 let randomB = 0;
 
+const speedometer = document.getElementById("speedo");
+
 // Mobil Merah
 //-------------------------------------------------------------
 let redCar;
@@ -205,6 +207,8 @@ function draw2() {
     redCar.position.z += a;
     redLight.position.z += a;
     camera.position.z += a;
+
+    speedometer.innerHTML = "Speed: " + Math.round(a * 40) + " KMH";
 
     if (accelerate && a <= topSpeed) {
         a += akselA;
