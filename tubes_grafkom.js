@@ -174,7 +174,7 @@ plane2.rotation.x = -1.571;
 let finished = false;
 function finish(car){
     if (!finished) {
-        document.getElementById("announciator").innerHTML = car + " Car Wins!";
+        window.location = "finish.html?car=" + car;
     }
     finished = true;
 }
