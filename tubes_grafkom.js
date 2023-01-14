@@ -131,15 +131,12 @@ scene.fog = fog;
 function countdown() {
     console.log("COUNTDOWN!");
     const countDown = setInterval(() => {
-        console.log(timeSec);
         timeSec--;
         if (timeSec == -1) {
             document.getElementById("countdown-lamp").setAttribute("src", "assets/Hijau.png");
-            console.log("GO!!!")
         } else if (timeSec == 2){
             document.getElementById("countdown-lamp").setAttribute("src", "assets/Kuning.png");
         } else if (timeSec == -2){
-            console.log("A");
             document.getElementById("countdown-lamp").style.display = "none";
             clearInterval(countDown);
         }
@@ -175,7 +172,6 @@ plane2.rotation.x = -1.571;
 let finished = false;
 function finish(car){
     if (!finished) {
-        console.log(car + " Car Wins!");
         document.getElementById("announciator").innerHTML = car + " Car Wins!";
     }
     finished = true;
