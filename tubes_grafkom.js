@@ -93,9 +93,6 @@ sun.target.updateMatrixWorld();
 sun.power = 7;
 scene.add(sun);
 
-scene.add(new THREE.SpotLightHelper(sun));
-
-
 const ambient = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambient);
 //-------------------------------------------------------------
