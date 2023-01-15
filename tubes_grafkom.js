@@ -180,7 +180,7 @@ function finish(car){
 //-------------------------------------------------------------
 // Engine Sound
 const engine = new Audio();
-engine.src = "assets/engine.mp3";
+engine.src = "assets/engine2.mp3";
 engine.volume = 0.4;
 
 let rpm = 1;
