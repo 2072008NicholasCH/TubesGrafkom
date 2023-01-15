@@ -196,6 +196,10 @@ function draw() {
     requestAnimationFrame(draw);
 }
 
+let accel = 0.01;
+let gear = 1;
+let changeGear = false;
+
 function draw2() {
     akselA = Math.random() * 0.01;
     akselB = Math.random() * randomB;
@@ -215,14 +219,45 @@ function draw2() {
     redLight.position.z += a;
     camera.position.z += a;
 
-    
-    if (rpm >= 2.5){
-        rpm -=  2;
-    } else {
-        rpm += a;
-    }
+    if (accelerate){
+        if (!changeGear){
+            switch(gear){
+                case 1:
+                    accel = 0.06;
+                    break;
+                case 2:
+                    accel = 0.04;
+                    break;
+                case 3:
+                    accel = 0.02;
+                    break;
+                case 4:
+                    accel = 0.01;
+                    break;
+                case 5:
+                    accel = 0.009;
+                    break;
+                case 6:
+                    accel = 0.008;
+                    break;
+            }
+        }
 
-    console.log(rpm);
+        rpm += accel;
+
+        if (rpm >= 4 && gear <= 5){
+            changeGear = true;
+            accel = -0.05;
+            gear++;
+        } else if (rpm <= 2.5){
+            changeGear = false;
+        }
+    } else {
+        rpm -= 0.01;
+        if (rpm <= 1){
+            rpm = 1;
+        }
+    }
 
     engine.playbackRate = rpm;
     
