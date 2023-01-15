@@ -177,6 +177,16 @@ function finish(car){
 }
 //-------------------------------------------------------------
 
+//-------------------------------------------------------------
+// Engine Sound
+const engine = new Audio();
+engine.src = "assets/engine.mp3";
+engine.volume = 0.4;
+
+let rpm = 1;
+
+//-------------------------------------------------------------
+
 
 //Drawer
 //-------------------------------------------------------------
@@ -205,6 +215,16 @@ function draw2() {
     redLight.position.z += a;
     camera.position.z += a;
 
+    if (rpm >= 2.5){
+        rpm = rpm - 2;
+    } else {
+        rpm = a + 1;
+    }
+
+    console.log(rpm);
+
+    engine.playbackRate = rpm;
+    
     speedometer.innerHTML = "Speed: " + Math.round(a * 40) + " KMH";
 
     if (accelerate && a <= topSpeed) {
@@ -266,6 +286,8 @@ window.addEventListener("resize", (e) => {
 //-------------------------------------------------------------
 draw();
 countdown();
+engine.play();
+engine.preservesPitch = false;
 
 setTimeout(() => {
     draw2();
