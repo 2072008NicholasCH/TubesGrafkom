@@ -215,10 +215,11 @@ function draw2() {
     redLight.position.z += a;
     camera.position.z += a;
 
+    
     if (rpm >= 2.5){
-        rpm = rpm - 2;
+        rpm -=  2;
     } else {
-        rpm = a + 1;
+        rpm += a;
     }
 
     console.log(rpm);
