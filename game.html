@@ -9,12 +9,28 @@
     <script src="node_modules/three/build/three.js"></script>
     <script src="node_modules/three/examples/js/loaders/GLTFLoader.js"></script>
     <script src="node_modules/three/examples/js/controls/OrbitControls.js"></script>
+
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
-<body style="margin: 0;">
+<body style="margin: 0; background-color: #333;">
+    <div class="d-flex">
+        <canvas id="game-canvas"></canvas>
+
+        <table>
+            <tr>
+                <td><img src="assets/merah.png" style="width: 90px; display: block; margin: auto;" id="countdown-lamp"></td>
+            </tr>
+            <tr>
+                <td><p style="color: white; font-size: small;" id="speedo">Speed: 0</p></td>
+            </tr>
+        </table>
+    </div>
+
     <script>
         const params = new URLSearchParams(window.location.search);
         const mode = params.get("difficulty");
     </script>
     <script src="tubes_grafkom.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
