@@ -190,17 +190,6 @@ function finish(car){
 }
 //-------------------------------------------------------------
 
-//-------------------------------------------------------------
-// Engine Sound
-const engine = new Audio();
-engine.src = "assets/engine2.mp3";
-engine.volume = 0.4;
-
-let rpm = 1;
-
-//-------------------------------------------------------------
-
-
 //Drawer
 //-------------------------------------------------------------
 function draw() {
@@ -231,48 +220,6 @@ function draw2() {
     redLight.position.z += a;
     camera.position.z += a;
 
-    if (accelerate){
-        if (!changeGear){
-            switch(gear){
-                case 1:
-                    accel = 0.06;
-                    break;
-                case 2:
-                    accel = 0.04;
-                    break;
-                case 3:
-                    accel = 0.02;
-                    break;
-                case 4:
-                    accel = 0.01;
-                    break;
-                case 5:
-                    accel = 0.009;
-                    break;
-                case 6:
-                    accel = 0.008;
-                    break;
-            }
-        }
-
-        rpm += accel;
-
-        if (rpm >= 4 && gear <= 5){
-            changeGear = true;
-            accel = -0.05;
-            gear++;
-        } else if (rpm <= 2.5){
-            changeGear = false;
-        }
-    } else {
-        rpm -= 0.01;
-        if (rpm <= 1){
-            rpm = 1;
-        }
-    }
-
-    engine.playbackRate = rpm;
-    
     speedometer.innerHTML = "Speed: " + Math.round(a * 40) + " KMH";
 
     if (accelerate && a <= topSpeed) {
@@ -334,8 +281,6 @@ window.addEventListener("resize", (e) => {
 //-------------------------------------------------------------
 draw();
 countdown();
-engine.play();
-engine.preservesPitch = false;
 
 setTimeout(() => {
     wheelRR.add(roda.children[11]);
@@ -344,11 +289,6 @@ setTimeout(() => {
     scene.add(wheelRR);
     wheelRR.children.forEach((wheels)=>{
         wheels.position.set(0, 0, 0)
-        // if (wheels.name != "RimRR"){
-        //     wheels.position.set(0, 0, 0);
-        // } else {
-        //     wheels.position.set(-0.4, -0.3, 0);
-        // }
     });
     draw2();
 }, 4000);
