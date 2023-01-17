@@ -93,7 +93,7 @@ sun.target.updateMatrixWorld();
 sun.power = 7;
 scene.add(sun);
 
-const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+const ambient = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambient);
 //-------------------------------------------------------------
 
@@ -177,8 +177,8 @@ function finish(car){
 }
 //-------------------------------------------------------------
 
-//-------------------------------------------------------------
 // Engine Sound
+//-------------------------------------------------------------
 const engine = new Audio();
 engine.src = "assets/engine2.mp3";
 engine.volume = 0.4;
